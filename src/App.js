@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Home from './Components/Home';
+import Cesar from './Components/Cesar';
+import Escitala from './Components/Escitala';
+import Cifrado from './Components/Cifrado'; // Importa el nuevo componente
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cesar" element={<Cesar />} />
+          <Route path="/escitala" element={<Escitala />} />
+          <Route path="/cifrado" element={<Cifrado />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
