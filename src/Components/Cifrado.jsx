@@ -32,20 +32,9 @@ export default function Cifrado() {
       .join('');
   };
 
-  // Función para simular el cifrado Skein
-  const encryptSkein = (input) => {
-    return input
-      .split('')
-      .map((char) => char.charCodeAt(0) + 3) // Desplazamiento ASCII de +3 (similar a César)
-      .join('-');
-  };
-
-  // Función para simular el descifrado Skein
-  const decryptSkein = (input) => {
-    return input
-      .split('-')
-      .map((char) => String.fromCharCode(char - 3)) // Desplazamiento ASCII de -3
-      .join('');
+  // Función para simular el hashing (Skein)
+  const hashSkein = (input) => {
+    return btoa(input.split('').reverse().join('')); // Simplemente invierte el texto y lo convierte a base64
   };
 
   // Función para manejar el cifrado
@@ -61,7 +50,7 @@ export default function Cifrado() {
         encryptedText = encryptPaillier(text);
         break;
       case 'Skein':
-        encryptedText = encryptSkein(text);
+        encryptedText = hashSkein(text); // Utiliza la función de hash
         break;
       default:
         return;
@@ -82,8 +71,7 @@ export default function Cifrado() {
         decryptedText = decryptPaillier(result);
         break;
       case 'Skein':
-        decryptedText = decryptSkein(result);
-        break;
+        return alert('No se puede descifrar un hash'); // Hash no es reversible
       default:
         return;
     }
@@ -105,9 +93,9 @@ export default function Cifrado() {
   return (
     <div className="cifrado-container">
       <h1 className="cifrado-title">Cifrados CAST5, Paillier y Skein</h1>
-      <div className="form-group">
+      <div className="form-group" style={{width:"80%"}}>
         <label>Texto a Cifrar/Descifrar:</label>
-        <textarea
+        <textarea style={{width:"100%"}}
           rows="4"
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -142,16 +130,16 @@ export default function Cifrado() {
         <button onClick={handleDecrypt} className="cifrado-button">Descifrar</button>
       </div>
 
-      <div className="form-group">
+      <div className="form-group" style={{width:"80%"}}>
         <label>Resultado:</label>
-        <textarea
+        <textarea style={{width:"100%"}}
           rows="4"
           value={result}
           readOnly
           placeholder="El resultado aparecerá aquí"
           className="form-control"
         />
-        <button onClick={copyToClipboard} className="cifrado-button">Copiar</button>
+        <button onClick={copyToClipboard} className="cifrado-button" style={{marginRight:10}}>Copiar</button>
         <button onClick={clearText} className="cifrado-button">Limpiar</button>
       </div>
     </div>

@@ -4,6 +4,7 @@ import Home from './Components/Home';
 import Cesar from './Components/Cesar';
 import Escitala from './Components/Escitala';
 import Cifrado from './Components/Cifrado'; // Importa el nuevo componente
+import Comparacion from './Components/Comparacion';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/cesar" element={<Cesar />} />
           <Route path="/escitala" element={<Escitala />} />
           <Route path="/cifrado" element={<Cifrado />} />
+          <Route path="/comparacion" element={<Comparacion />} />
         </Routes>
       </div>
     </Router>

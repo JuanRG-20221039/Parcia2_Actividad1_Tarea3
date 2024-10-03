@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../Css/Home.css'; // Asegúrate de importar el archivo CSS
+import '../Css/Home.css';
 
 export default function Home() {
   return (
@@ -15,6 +15,9 @@ export default function Home() {
         </Link>
         <Link to="/cifrado">
           <button className="home-button">Cifrado CAST5, Paillier y Skein</button>
+        </Link>
+        <Link to="/comparacion">
+          <button className="home-button">COMPARACIONES ENTRE LOS METODOS</button>
         </Link>
       </div>
     </div>
